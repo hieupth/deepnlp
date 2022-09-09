@@ -94,21 +94,29 @@ def clear_cache(name):
 
 def load_model(model_name):
     ensure_model_name(model_name)
-    path_model= os.path.join(model_save)
+    path_model= os.path.join(model_save, model_name)
     return tf.keras.models.load_model(path_model, compile= False)
 
     
 
-def load_vocabs(vocab_name, *,  type= 'pos'):
+def load_vocabs(vocab_name, *,  task= 'pos'):
     ensure_vocabs_name(vocab_name)
     path_vocabs= os.path.join(vocabs_save, vocab_name)
-    assert type in ['pos', 'ner', 'dp', 'all']
-    if type== 'all':
-        pos= pkl.load(os.path.join(path_vocabs, 'pos.pkl'))
-        ner= pkl.load(os.path.join(path_vocabs, 'ner.pkl'))
-        dp= pkl.load(os.path.join(path_vocabs, 'dp.pkl'))
+    assert task in ['pos', 'ner', 'dp', 'multi']
+    if task== 'multi':
+        # pos load
+        with open(os.path.join(path_vocabs, 'pos.pkl')) as handel: 
+            pos= pkl.load(handel)
+        # ner load
+        with open(os.path.join(path_vocabs, 'ner.pkl')) as handel: 
+            ner= pkl.load(handel)
+        # dp load
+        with open(os.path.join(path_vocabs, 'dp.pkl')) as handel: 
+            dp= pkl.load(handel)
+
         return pos, ner, dp 
     else: 
-        vocab= pkl.load(os.path.join(path_vocabs, f'{type}.pkl'))
+        with open(os.path.join(path_vocabs, f'{task}.pkl')) as handel: 
+            vocab= pkl.load(handel)
         return vocab
 

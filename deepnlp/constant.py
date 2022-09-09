@@ -5,11 +5,11 @@ model_url= {
 }
 
 vocabs_url = {
-    'deepnlp_eng': '', # eng
+    'deepnlp_eng': 'https://drive.google.com/drive/folders/1SS7ra-xnaAQ2Y5KeR5ulQAqu-OtPKbhJ?usp=sharing', # eng
 
     'deepnlp_vie': '' # vie
     
 }
 
-vocabs_save= '/root/cache/cerelab/vocabs/'
-model_save= 'root/cache/cerelab/models/'
+vocabs_save= '../root/cache/cerelab/vocabs/'
+model_save= '../root/cache/cerelab/models/'

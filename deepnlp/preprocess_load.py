@@ -105,18 +105,18 @@ def load_vocabs(vocab_name, *,  task= 'pos'):
     assert task in ['pos', 'ner', 'dp', 'multi']
     if task== 'multi':
         # pos load
-        with open(os.path.join(path_vocabs, 'pos.pkl')) as handel: 
+        with open(os.path.join(path_vocabs, 'pos.pkl'), 'rb') as handel: 
             pos= pkl.load(handel)
         # ner load
-        with open(os.path.join(path_vocabs, 'ner.pkl')) as handel: 
+        with open(os.path.join(path_vocabs, 'ner.pkl'), 'rb') as handel: 
             ner= pkl.load(handel)
         # dp load
-        with open(os.path.join(path_vocabs, 'dp.pkl')) as handel: 
+        with open(os.path.join(path_vocabs, 'dp.pkl'), 'rb') as handel: 
             dp= pkl.load(handel)
 
         return pos, ner, dp 
     else: 
-        with open(os.path.join(path_vocabs, f'{task}.pkl')) as handel: 
+        with open(os.path.join(path_vocabs, f'{task}.pkl'), 'rb') as handel: 
             vocab= pkl.load(handel)
         return vocab
 

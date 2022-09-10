@@ -30,14 +30,6 @@ def set_gpus(gpu_ids_list):
             print(e)
     
 
-def word_tokenize(text):
-    word= re.findall(r"[\w'\"]+|[,.!?]", text)
-    return word
-
-def sentence_tokenize(text):
-    sentences= re.split(r'(?<!\w\.\w.)(?<![A-Z][a-z]\.)(?<=\.|\?)\s', text)
-    return sentences
-
 def ensure_dir(dir):
     if not os.path.exists(dir):
         os.makedirs(dir)

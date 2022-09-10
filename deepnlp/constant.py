@@ -11,5 +11,5 @@ vocabs_url = {
     
 }
 
-vocabs_save= '../root/cache/cerelab/vocabs/'
-model_save= '../root/cache/cerelab/models/'
+vocabs_save= '~/.cache/cerelab/vocabs/'
+model_save= '~/.cache/cerelab/models/'

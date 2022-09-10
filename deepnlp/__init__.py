@@ -1,8 +1,7 @@
+from deepnlp.utils.tokenizer import word_tokenize, sentence_tokenize
 from deepnlp.preprocess_load import (
     download,
     load_model, 
-    word_tokenize, 
-    sentence_tokenize, 
     load_vocabs, 
     set_gpus, 
     download_model, 
@@ -10,7 +9,6 @@ from deepnlp.preprocess_load import (
     clear_cache_model, 
     clear_cache_vocabs,
     clear_cache, 
-
 )
 
 __version__= "1.0.1"

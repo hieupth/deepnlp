@@ -1,4 +1,4 @@
-import re 
+from typing import Type
 import gdown
 import os
 import shutil
@@ -89,8 +89,8 @@ def load_model(model_name):
     path_model= os.path.join(model_save, model_name)
     return tf.keras.models.load_model(path_model, compile= False)
 
-    
 
+    
 def load_vocabs(vocab_name, *,  task= 'pos'):
     ensure_vocabs_name(vocab_name)
     path_vocabs= os.path.join(vocabs_save, vocab_name)

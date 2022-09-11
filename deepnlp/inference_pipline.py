@@ -21,7 +21,7 @@ def word_ids(tokens: List[str], input_ids, tokenizer):
   return ids
 
 
-class MultiTask(object):
+class MultiTask:
     def __init__(self, model_name: Type[str]):
         self.__model_name= model_name
         ensure_model_name(model_name)
@@ -32,7 +32,7 @@ class MultiTask(object):
 
         # tokenizer
         if model_name == 'deepnlp_eng':
-            self.__tokenizer_name= 'disitlroberta-base'
+            self.__tokenizer_name= 'distilroberta-base'
             self.__language= 'eng'
         self.__tokenizer= AutoTokenizer.from_pretrained(self.__tokenizer_name, add_prefix_space= True, use_fast= True)
     def __get_output(self, text: List[str], device:Optional[str]= None):
@@ -120,8 +120,8 @@ class MultiTask(object):
 
 
     def __pos_tagger(self, text:Type[str], device:Optional[str]= None) -> TokenClassificationData:
-        text = word_tokenize(text, language= self.__language)
-        result= self.__process_token(text, 'pos_tagger', device)
+        text_ = word_tokenize(text, language= self.__language)
+        result= self.__process_token(text_, 'pos_tagger', device)
         return TokenClassificationData(
             {'Sequence': text,
             'Inference':{
@@ -131,8 +131,8 @@ class MultiTask(object):
         )
 
     def __ner_tagger(self, text:Type[str], device:Optional[str]= None) -> TokenClassificationData:
-        text = word_tokenize(text, language= self.__language)
-        result= self.__process_token(text, 'ner_tagger', device)
+        text_ = word_tokenize(text, language= self.__language)
+        result= self.__process_token(text_, 'ner_tagger', device)
         return TokenClassificationData(
             {'Sequence': text,
             'Inference':{
@@ -142,8 +142,8 @@ class MultiTask(object):
         )
 
     def __dp_parser(self, text:Type[str], device:Optional[str]= None) -> ParserData:
-        text = word_tokenize(text, language= self.__language)
-        result= self.__process_token(text, 'dp_parser', device)
+        text_ = word_tokenize(text, language= self.__language)
+        result= self.__process_token(text_, 'dp_parser', device)
 
         return ParserData(
             {
@@ -157,8 +157,8 @@ class MultiTask(object):
         )
     
     def __multi(self, text:Type[str], device:Optional[str]= None) -> MultiData:
-        text= word_tokenize(text, language= self.__language)
-        result= self.__process_token(text, 'multi', device)
+        text_= word_tokenize(text, language= self.__language)
+        result= self.__process_token(text_, 'multi', device)
 
         return MultiData(
             {
@@ -219,7 +219,7 @@ class pipline:
         self.__model= model 
         self.__task= task  
         if self.__model._name== 'deepnlp_eng':
-            self.__tokenizer_name= 'disitlroberta-base'
+            self.__tokenizer_name= 'distilroberta-base'
             self.__language= 'eng'
             self.__vocab= load_vocabs('deepnlp_eng', task= 'multi')
         
@@ -308,8 +308,8 @@ class pipline:
 
     
     def __call__(self, text: Type[str], device: Optional[str]= None): 
-        text= word_tokenize(text, language= self.__language)
-        result= self.__process_token(text, device)
+        text_= word_tokenize(text, language= self.__language)
+        result= self.__process_token(text_, device)
         result= {
             'pos_tagger': TokenClassificationData(
             {'Sequence': text,

@@ -1,4 +1,4 @@
-from typing import Any, Optional, Type, Sequence
+from typing import Any, List, Optional, Type, Sequence
 from deepnlp.utils.data_struct import TokenClassificationData, ParserData, MultiData
 from deepnlp.utils.tokenizer import word_tokenize
 
@@ -53,7 +53,7 @@ def print_multidata(input: Type[ParserData], language:Type[str], del_prefix_ner:
             + inference['rela'][i]
         )
 
-def print_out(input: Sequence[Any], language= 'eng', del_prefix_ner= True):
+def print_out(input: List[Any], language= 'eng', del_prefix_ner= True):
     for i in input:
         if isinstance(i, TokenClassificationData):
             print_tokenclassification(i, language, del_prefix_ner)

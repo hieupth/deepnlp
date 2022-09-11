@@ -89,7 +89,8 @@ def load_model(model_name):
     path_model= os.path.join(model_save, model_name)
     return tf.keras.models.load_model(path_model, compile= False)
 
-
+def idx2label(vocab):
+    return dict((i,j) for j,i in vocab.items())
     
 def load_vocabs(vocab_name, *,  task= 'pos'):
     ensure_vocabs_name(vocab_name)
@@ -106,9 +107,9 @@ def load_vocabs(vocab_name, *,  task= 'pos'):
         with open(os.path.join(path_vocabs, 'dp.pkl'), 'rb') as handel: 
             dp= pkl.load(handel)
 
-        return pos, ner, dp 
+        return idx2label(pos), idx2label(ner), idx2label(dp) 
     else: 
         with open(os.path.join(path_vocabs, f'{task}.pkl'), 'rb') as handel: 
             vocab= pkl.load(handel)
-        return vocab
+        return idx2label(vocab)
 

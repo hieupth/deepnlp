@@ -11,6 +11,15 @@ from deepnlp.preprocess_load import (
     clear_cache, 
 )
 
+from deepnlp.utils.print_out import print_out
+from deepnlp.inference_pipline import (
+    MultiTask,
+    PosTagger,
+    NerTagger,
+    DPParser,
+    pipline
+)
+
 __version__= "1.0.1"
 __all__ = [
     'download',
@@ -23,5 +32,11 @@ __all__ = [
     'download_vocabs', 
     'clear_cache_model', 
     'clear_cache_vocabs', 
-    'clear_cache'
+    'clear_cache',
+    'MultiTask',
+    'PosTagger',
+    'NerTagger',
+    'DPParser',
+    'pipline',
+    'print_out'
 ]

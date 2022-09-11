@@ -27,6 +27,8 @@ def print_parserdata(input: Type[ParserData], language:Type[str]= None):
         print(
             str(i+1)
             + "\t"
+            + text[i]
+            + "\t"
             + inference['xpos'][i]
             + "\t"
             + str(inference['head'][i])
@@ -43,6 +45,8 @@ def print_multidata(input: Type[ParserData], language:Type[str], del_prefix_ner:
     for i in range(len(text)):
         print(
             str(i+1)
+            + "\t"
+            + text[i]
             + "\t"
             + inference['xpos'][i]
             + "\t"

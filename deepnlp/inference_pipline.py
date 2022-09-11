@@ -220,7 +220,7 @@ class pipline:
         self.__task= task  
         if self.__model._name== 'deepnlp_eng':
             self.__tokenizer_name= 'disitlroberta-base'
-            
+            self.__language= 'eng'
         
         self.__tokenizer= AutoTokenizer.from_pretrained(self.__tokenizer_name, add_prefix_space= True, use_fast= True)
 
@@ -307,12 +307,44 @@ class pipline:
 
     
     def __call__(self, text: Type[str], device: Optional[str]= None): 
+        text= word_tokenize(text, language= self.__language)
         result= self.__process_token(text, device)
         result= {
-            'pos_tagger': TokenClassificationData(result),
-            'ner_tagger': TokenClassificationData(result), 
-            'dp_parser': DPParser(result), 
-            'multi': MultiData(result)
+            'pos_tagger': TokenClassificationData(
+            {'Sequence': text,
+            'Inference':{
+                      f'{i.decode()}': {'score': v, 'label': self.__vocab[1][m]} for i, v, m in result
+              }
+            }
+        ),
+            'ner_tagger': TokenClassificationData(
+            {'Sequence': text,
+            'Inference':{
+                      f'{i.decode()}': {'score': v, 'label': self.__vocab[1][m]} for i, v, m in result
+              }
+            }
+        ), 
+            'dp_parser': ParserData(
+            {
+                'Sequence': text, 
+                'Inference':{
+                    'xpos': [self.__vocab[0][i] for (_, i, v, m) in result], 
+                    'head': [v for (_, i, v, m) in result],
+                    'rela':[self.__vocab[-1][m] for (_, i, v, m) in result],
+                }
+            }
+        ), 
+            'multi': MultiData(
+            {
+                'Sequence': text, 
+                'Inference':{
+                    'xpos': [self.__vocab[0][i] for (_, i, k, v, m) in result], 
+                    'ner': [self.__vocab[1][k] for (_, i, k, v, m) in result],
+                    'head': [v for (_, i, k, v, m) in result],
+                    'rela':[self.__vocab[-1][m] for (_, i, k, v, m) in result],
+                }
+            }
+        )
         }
         return result[self.__task]
 

@@ -22,7 +22,7 @@ def word_ids(tokens: List[str], input_ids, tokenizer):
 
 
 class MultiTask(object):
-    def ___init__(self, model_name: Type[str]):
+    def __init__(self, model_name: Type[str]):
         self.__model_name= model_name
         ensure_model_name(model_name)
 

@@ -21,14 +21,14 @@ def word_ids(tokens: List[str], input_ids, tokenizer):
   return ids
 
 
-class MultiTask:
+class MultiTask(object):
     def ___init__(self, model_name: Type[str]):
         self.__model_name= model_name
         ensure_model_name(model_name)
 
         # load model and vocab
         self.__model= load_model(model_name)
-        self.__vocab= load_vocabs(model_name) # pos, ner, dp 
+        self.__vocab= load_vocabs(model_name, task= 'multi') # pos, ner, dp 
 
         # tokenizer
         if model_name == 'deepnlp_eng':
@@ -221,6 +221,7 @@ class pipline:
         if self.__model._name== 'deepnlp_eng':
             self.__tokenizer_name= 'disitlroberta-base'
             self.__language= 'eng'
+            self.__vocab= load_vocabs('deepnlp_eng', task= 'multi')
         
         self.__tokenizer= AutoTokenizer.from_pretrained(self.__tokenizer_name, add_prefix_space= True, use_fast= True)
 

@@ -185,8 +185,8 @@ class MultiTask:
 class PosTagger(MultiTask):
     def __init__(self, model_name:Type[str]):
         super().__init__(model_name)
-    def inference(text: Type[str], device:Optional[str]= None) -> TokenClassificationData:
-        return super().__pos_tagger(text, device)
+    def inference(self, text: Type[str], device:Optional[str]= None) -> TokenClassificationData:
+        return self.__pos_tagger(text, device)
     def __str__(self) -> str:
         return super().__str__()
     def __repr__(self) -> str:
@@ -195,8 +195,8 @@ class PosTagger(MultiTask):
 class NerTagger(MultiTask):
     def __init__(self, model_name:Type[str]):
         super().__init__(model_name)
-    def inference(text: Type[str], device:Optional[str]= None) -> TokenClassificationData:
-        return super().__ner_tagger(text, device)
+    def inference(self, text: Type[str], device:Optional[str]= None) -> TokenClassificationData:
+        return self.__ner_tagger(text, device)
     def __str__(self) -> str:
         return super().__str__()
     def __repr__(self) -> str:
@@ -205,15 +205,15 @@ class NerTagger(MultiTask):
 class DPParser(MultiTask):
     def __init__(self, model_name:Type[str]):
         super().__init__(model_name)
-    def inference(text: Type[str], device:Optional[str]= None) -> ParserData:
-        return super().__dp_parser(text, device)
+    def inference(self, text: Type[str], device:Optional[str]= None) -> ParserData:
+        return self.__dp_parser(text, device)
     def __str__(self) -> str:
         return super().__str__()
     def __repr__(self) -> str:
         return super().__repr__()
 
 
-class pipline:
+class pipeline:
     def __init__(self, model, task:Type[str]):
         assert task in ['pos_tagger', 'ner_tagger', 'dp_parser', 'multi']
         self.__model= model 

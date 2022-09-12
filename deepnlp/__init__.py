@@ -12,12 +12,12 @@ from deepnlp.preprocess_load import (
 )
 
 from deepnlp.utils.print_out import print_out
-from deepnlp.inference_pipline import (
+from deepnlp.inference_pipeline import (
     MultiTask,
     PosTagger,
     NerTagger,
     DPParser,
-    pipline
+    pipeline
 )
 
 __version__= "1.0.1"

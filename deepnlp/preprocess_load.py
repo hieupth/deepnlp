@@ -87,8 +87,10 @@ def clear_cache(name):
 def load_model(model_name):
     ensure_model_name(model_name)
     path_model= os.path.join(model_save, model_name)
-    return tf.keras.models.load_model(path_model, compile= False)
-
+    model= tf.keras.models.load_model(path_model, compile= False)
+    model._name= model_name
+    return model 
+    
 def idx2label(vocab):
     return dict((i,j) for j,i in vocab.items())
     

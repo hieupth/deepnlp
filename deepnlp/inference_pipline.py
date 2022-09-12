@@ -125,7 +125,7 @@ class MultiTask:
         return TokenClassificationData(
             {'Sequence': text,
             'Inference':{
-                      f'{i.decode()}': {'score': v, 'label': self.__vocab[0][m]} for i, v, m in result
+                      f'{i}': {'score': v, 'label': self.__vocab[0][m]} for i, v, m in result
               }
             }
         )
@@ -136,7 +136,7 @@ class MultiTask:
         return TokenClassificationData(
             {'Sequence': text,
             'Inference':{
-                      f'{i.decode()}': {'score': v, 'label': self.__vocab[1][m]} for i, v, m in result
+                      f'{i}': {'score': v, 'label': self.__vocab[1][m]} for i, v, m in result
               }
             }
         )
@@ -310,22 +310,23 @@ class pipline:
     def __call__(self, text: Type[str], device: Optional[str]= None): 
         text_= word_tokenize(text, language= self.__language)
         result= self.__process_token(text_, device)
-        result= {
-            'pos_tagger': TokenClassificationData(
+
+        if self.__task== 'pos_tagger':
+            return TokenClassificationData(
             {'Sequence': text,
             'Inference':{
-                      f'{i.decode()}': {'score': v, 'label': self.__vocab[1][m]} for i, v, m in result
+                      f'{i}': {'score': v, 'label': self.__vocab[0][m]} for i, v, m in result
               }
-            }
-        ),
-            'ner_tagger': TokenClassificationData(
+            })
+        elif self.__task == 'ner_tagger':
+            return TokenClassificationData(
             {'Sequence': text,
             'Inference':{
-                      f'{i.decode()}': {'score': v, 'label': self.__vocab[1][m]} for i, v, m in result
+                      f'{i}': {'score': v, 'label': self.__vocab[1][m]} for i, v, m in result
               }
-            }
-        ), 
-            'dp_parser': ParserData(
+            })
+        elif self.__task == 'dp_parser':
+            return ParserData(
             {
                 'Sequence': text, 
                 'Inference':{
@@ -333,9 +334,9 @@ class pipline:
                     'head': [v for (_, i, v, m) in result],
                     'rela':[self.__vocab[-1][m] for (_, i, v, m) in result],
                 }
-            }
-        ), 
-            'multi': MultiData(
+            })
+        elif self.__task== 'multi':
+            return MultiData(
             {
                 'Sequence': text, 
                 'Inference':{
@@ -344,8 +345,6 @@ class pipline:
                     'head': [v for (_, i, k, v, m) in result],
                     'rela':[self.__vocab[-1][m] for (_, i, k, v, m) in result],
                 }
-            }
-        )
-        }
-        return result[self.__task]
+            })
+
 

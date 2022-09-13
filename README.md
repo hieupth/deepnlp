@@ -190,9 +190,9 @@ With `DPParser` class
 >>> deepnlp.print_out([output])
 I have an apple.
 1	I	    PRP	  3	  nsubj
-2	have	VBP	  0	  root
+2	have	    VBP	  0	  root
 3	an	    DT	  5	  det
-4	apple	NN	  3	  obj
+4	apple	    NN	  3	  obj
 5	.	    .	  3	  punct
 ```
 With `pipeline` class 

@@ -95,11 +95,11 @@ model_name: deepnlp_eng, vocab_name: deepnlp_eng, tokenizer_name: distilroberta-
   '.': {'score': 0.8892631, 'label': '.'}}}
 >>> deepnlp.print_out([output])
 I have an apple.
-1	I	    PRP
+1	I	PRP
 2	have	VBP
-3	an	    DT
+3	an	DT
 4	apple	NN
-5	.   	.
+5	.       .
 ```
 - With `pipeline` class
 
@@ -110,11 +110,11 @@ I have an apple.
 >>> output= pipeline("I have an apple.", device= 'cpu') # default device = 'cpu'
 >>> deepnlp.print_out([output])
 I have an apple.
-1	I	    PRP
+1	I	PRP
 2	have	VBP
-3	an	    DT
+3	an	DT
 4	apple	NN
-5	.   	.
+5	.       .
 ```
 ### 5. Named Entity Recognition
 <a name= 'ner'></a>
@@ -136,15 +136,15 @@ Please confirm your song choice: Same Old War, playing on the kitchen speaker
 1	Please	    O
 2	confirm	    O
 3	your	    O
-4	song    	O
-5	choice  	O
+4	song        O
+5	choice 	    O
 6	Same	    B-MISC
-7	Old	        I-MISC
-8	War	        I-MISC
-9	,	        O
+7	Old	    I-MISC
+8	War	    I-MISC
+9	,	    O
 10	playing	    O
-11	on	        O
-12	the	        O
+11	on	    O
+12	the	    O
 13	kitchen	    O
 14	speaker	    O
 ```
@@ -157,20 +157,20 @@ With `pipeline` class
 >>> output= pipeline("Please confirm your song choice: Same Old War, playing on the kitchen speaker") 
 >>> deepnlp.print_out([output], del_prefix_ner= True, device= 'cpu') # default device = 'cpu'
 Please confirm your song choice: Same Old War, playing on the kitchen speaker
-1	Please	  O
-2	confirm	  O
-3	your	  O
-4	song	  O
-5	choice	  O
-6	Same	  MISC
-7	Old	      MISC
-8	War	      MISC
-9	,	      O
-10	playing	  O
-11	on	      O
-12	the	      O
-13	kitchen	  O
-14	speaker	  O
+1	Please	    O
+2	confirm	    O
+3	your	    O
+4	song        O
+5	choice 	    O
+6	Same	    MISC
+7	Old	    MISC
+8	War	    MISC
+9	,	    O
+10	playing	    O
+11	on	    O
+12	the	    O
+13	kitchen	    O
+14	speaker	    O
 ```
 ### 6. Dependency Parsing 
 <a name= 'parser'></a>
@@ -205,9 +205,9 @@ With `pipeline` class
 >>> deepnlp.print_out([output])
 I have an apple.
 1	I	    PRP	  3	  nsubj
-2	have	VBP	  0	  root
+2	have	    VBP	  0	  root
 3	an	    DT	  5	  det
-4	apple	NN	  3	  obj
+4	apple	    NN	  3	  obj
 5	.	    .	  3	  punct
 ```
 
@@ -223,20 +223,20 @@ With `MultiTask`
 <deepnlp.utils.data_struct.MultiData at 0x7f69da8f7650>
 >>> deepnlp.print_out([output])
 Please confirm your song choice: Same Old War, playing on the kitchen speaker
-1	Please	  UH	O	    3	discourse
-2	confirm	  VB	O	    0	root
-3	your	  PRP$	O 	    6	nmod:poss
-4	song	  NN	O	    6	compound
-5	choice	  NN	O 	    3	obj
+1	Please	  UH	O	3	discourse
+2	confirm	  VB	O	0	root
+3	your	  PRP$	O 	6	nmod:poss
+4	song	  NN	O	6	compound
+5	choice	  NN	O 	3	obj
 6	Same	  JJ	MISC	9	amod
-7	Old	      NNP	MISC	9	compound
-8	War	      NNP	MISC	3	obj
-9	,	       ,	O	    3	punct
-10	playing	  VBG	O	    3	advcl
-11	on	      IN	O	    15	case
-12	the	      DT	O	    15	det
-13	kitchen	  NN	O	    15	compound
-14	speaker   NN	O	    11	obl
+7	Old	  NNP	MISC	9	compound
+8	War	  NNP	MISC	3	obj
+9	,	  ,	O	3	punct
+10	playing	  VBG	O	3	advcl
+11	on	  IN	O	15	case
+12	the	  DT	O	15	det
+13	kitchen	  NN	O	15	compound
+14	speaker   NN	O	11	obl
 ```
 With `pipeline` 
 
@@ -247,20 +247,20 @@ With `pipeline`
 >>> output= pipeline("I have an apple.", device= 'cpu') # default device = 'cpu'
 >>> deepnlp.print_out([output])
 Please confirm your song choice: Same Old War, playing on the kitchen speaker
-1	Please	  UH	O	    3	discourse
-2	confirm	  VB	O	    0	root
-3	your	  PRP$	O 	    6	nmod:poss
-4	song	  NN	O	    6	compound
-5	choice	  NN	O 	    3	obj
+1	Please	  UH	O	3	discourse
+2	confirm	  VB	O	0	root
+3	your	  PRP$	O 	6	nmod:poss
+4	song	  NN	O	6	compound
+5	choice	  NN	O 	3	obj
 6	Same	  JJ	MISC	9	amod
-7	Old	      NNP	MISC	9	compound
-8	War	      NNP	MISC	3	obj
-9	,	       ,	O	    3	punct
-10	playing	  VBG	O	    3	advcl
-11	on	      IN	O	    15	case
-12	the	      DT	O	    15	det
-13	kitchen	  NN	O	    15	compound
-14	speaker   NN	O	    11	obl
+7	Old	  NNP	MISC	9	compound
+8	War	  NNP	MISC	3	obj
+9	,	  ,	O	3	punct
+10	playing	  VBG	O	3	advcl
+11	on	  IN	O	15	case
+12	the	  DT	O	15	det
+13	kitchen	  NN	O	15	compound
+14	speaker   NN	O	11	obl
 ```
 ### 8. Clear Cache
 <a name= 'cache'></a>

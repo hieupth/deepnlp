@@ -119,7 +119,7 @@ class MultiTask:
 
 
 
-    def __pos_tagger(self, text:Type[str], device:Optional[str]= None) -> TokenClassificationData:
+    def _pos_tagger(self, text:Type[str], device:Optional[str]= None) -> TokenClassificationData:
         text_ = word_tokenize(text, language= self.__language)
         result= self.__process_token(text_, 'pos_tagger', device)
         return TokenClassificationData(
@@ -130,18 +130,18 @@ class MultiTask:
             }
         )
 
-    def __ner_tagger(self, text:Type[str], device:Optional[str]= None) -> TokenClassificationData:
+    def _ner_tagger(self, text:Type[str], device:Optional[str]= None) -> TokenClassificationData:
         text_ = word_tokenize(text, language= self.__language)
         result= self.__process_token(text_, 'ner_tagger', device)
         return TokenClassificationData(
             {'Sequence': text,
             'Inference':{
-                      f'{i}': {'score': v, 'label': self.__vocab[1][m]} for i, v, m in result
+                      f'{i.decode()}': {'score': v, 'label': self.__vocab[1][m]} for i, v, m in result
               }
             }
         )
 
-    def __dp_parser(self, text:Type[str], device:Optional[str]= None) -> ParserData:
+    def _dp_parser(self, text:Type[str], device:Optional[str]= None) -> ParserData:
         text_ = word_tokenize(text, language= self.__language)
         result= self.__process_token(text_, 'dp_parser', device)
 
@@ -156,7 +156,7 @@ class MultiTask:
             }
         )
     
-    def __multi(self, text:Type[str], device:Optional[str]= None) -> MultiData:
+    def _multi(self, text:Type[str], device:Optional[str]= None) -> MultiData:
         text_= word_tokenize(text, language= self.__language)
         result= self.__process_token(text_, 'multi', device)
 
@@ -173,7 +173,7 @@ class MultiTask:
         )
 
     def inference(self, text:Type[str], device:Optional[str]= None) -> MultiData:
-        return self.__multi(text, device)
+        return self._multi(text, device)
 
     def __str__(self) -> str:
         return f'model_name: {self.__model_name}, vocab_name: {self.__model_name}, tokenizer_name: {self.__tokenizer_name}'
@@ -186,7 +186,7 @@ class PosTagger(MultiTask):
     def __init__(self, model_name:Type[str]):
         super().__init__(model_name)
     def inference(self, text: Type[str], device:Optional[str]= None) -> TokenClassificationData:
-        return self.__pos_tagger(text, device)
+        return self._pos_tagger(text, device)
     def __str__(self) -> str:
         return super().__str__()
     def __repr__(self) -> str:
@@ -196,7 +196,7 @@ class NerTagger(MultiTask):
     def __init__(self, model_name:Type[str]):
         super().__init__(model_name)
     def inference(self, text: Type[str], device:Optional[str]= None) -> TokenClassificationData:
-        return self.__ner_tagger(text, device)
+        return self._ner_tagger(text, device)
     def __str__(self) -> str:
         return super().__str__()
     def __repr__(self) -> str:
@@ -206,7 +206,7 @@ class DPParser(MultiTask):
     def __init__(self, model_name:Type[str]):
         super().__init__(model_name)
     def inference(self, text: Type[str], device:Optional[str]= None) -> ParserData:
-        return self.__dp_parser(text, device)
+        return self._dp_parser(text, device)
     def __str__(self) -> str:
         return super().__str__()
     def __repr__(self) -> str:
@@ -322,7 +322,7 @@ class pipeline:
             return TokenClassificationData(
             {'Sequence': text,
             'Inference':{
-                      f'{i}': {'score': v, 'label': self.__vocab[1][m]} for i, v, m in result
+                      f'{i.decode()}': {'score': v, 'label': self.__vocab[1][m]} for i, v, m in result
               }
             })
         elif self.__task == 'dp_parser':

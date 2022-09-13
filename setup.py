@@ -13,7 +13,7 @@ classifiers= [
 
 setup(
     name= 'deepnlp-cerelab', 
-    version= '1.0.1', 
+    version= '1.0.2', 
     description= 'Natural language processing package based on modern deep learning methods',
     long_description= long_description, 
     long_description_content_type= 'text/markdown',

@@ -185,15 +185,15 @@ With `DPParser` class
 >>> output.value()
 {'Sequence': 'I have an apple.',
  'Inference': {'xpos': ['PRP', 'VBP', 'DT', 'NN', '.'],
-  'head': [3, 0, 5, 3, 3],
+  'head': [2, 0, 4, 2, 2],
   'rela': ['nsubj', 'root', 'det', 'obj', 'punct']}}
 >>> deepnlp.print_out([output])
 I have an apple.
-1	I	    PRP	  3	  nsubj
+1	I	    PRP	  2	  nsubj
 2	have	    VBP	  0	  root
-3	an	    DT	  5	  det
-4	apple	    NN	  3	  obj
-5	.	    .	  3	  punct
+3	an	    DT	  4	  det
+4	apple	    NN	  2	  obj
+5	.	    .	  2	  punct
 ```
 With `pipeline` class 
 
@@ -204,11 +204,11 @@ With `pipeline` class
 >>> output= pipeline("I have an apple.", device= 'cpu') # default device = 'cpu'
 >>> deepnlp.print_out([output])
 I have an apple.
-1	I	    PRP	  3	  nsubj
+1	I	    PRP	  2	  nsubj
 2	have	    VBP	  0	  root
-3	an	    DT	  5	  det
-4	apple	    NN	  3	  obj
-5	.	    .	  3	  punct
+3	an	    DT	  4	  det
+4	apple	    NN	  2	  obj
+5	.	    .	  2	  punct
 ```
 
 ### 7. Multi Task 
@@ -223,20 +223,20 @@ With `MultiTask`
 <deepnlp.utils.data_struct.MultiData at 0x7f69da8f7650>
 >>> deepnlp.print_out([output])
 Please confirm your song choice: Same Old War, playing on the kitchen speaker
-1	Please	  UH	O	3	discourse
+1	Please	  UH	O	2	discourse
 2	confirm	  VB	O	0	root
-3	your	  PRP$	O 	6	nmod:poss
+3	your	  PRP$	O 	5	nmod:poss
 4	song	  NN	O	6	compound
-5	choice	  NN	O 	3	obj
-6	Same	  JJ	MISC	9	amod
-7	Old	  NNP	MISC	9	compound
-8	War	  NNP	MISC	3	obj
-9	,	  ,	O	3	punct
-10	playing	  VBG	O	3	advcl
-11	on	  IN	O	15	case
-12	the	  DT	O	15	det
-13	kitchen	  NN	O	15	compound
-14	speaker   NN	O	11	obl
+5	choice	  NN	O 	2	obj
+6	Same	  JJ	MISC	8	amod
+7	Old	  NNP	MISC	8	compound
+8	War	  NNP	MISC	2	obj
+9	,	  ,	O	2	punct
+10	playing	  VBG	O	2	advcl
+11	on	  IN	O	14	case
+12	the	  DT	O	14	det
+13	kitchen	  NN	O	14	compound
+14	speaker   NN	O	10	obl
 ```
 With `pipeline` 
 
@@ -247,20 +247,20 @@ With `pipeline`
 >>> output= pipeline("I have an apple.", device= 'cpu') # default device = 'cpu'
 >>> deepnlp.print_out([output])
 Please confirm your song choice: Same Old War, playing on the kitchen speaker
-1	Please	  UH	O	3	discourse
+1	Please	  UH	O	2	discourse
 2	confirm	  VB	O	0	root
-3	your	  PRP$	O 	6	nmod:poss
+3	your	  PRP$	O 	5	nmod:poss
 4	song	  NN	O	6	compound
-5	choice	  NN	O 	3	obj
-6	Same	  JJ	MISC	9	amod
-7	Old	  NNP	MISC	9	compound
-8	War	  NNP	MISC	3	obj
+5	choice	  NN	O 	2	obj
+6	Same	  JJ	MISC	8	amod
+7	Old	  NNP	MISC	8	compound
+8	War	  NNP	MISC	2	obj
 9	,	  ,	O	3	punct
-10	playing	  VBG	O	3	advcl
-11	on	  IN	O	15	case
-12	the	  DT	O	15	det
-13	kitchen	  NN	O	15	compound
-14	speaker   NN	O	11	obl
+10	playing	  VBG	O	2	advcl
+11	on	  IN	O	14	case
+12	the	  DT	O	14	det
+13	kitchen	  NN	O	14	compound
+14	speaker   NN	O	10	obl
 ```
 ### 8. Clear Cache
 <a name= 'cache'></a>

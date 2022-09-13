@@ -226,7 +226,7 @@ Please confirm your song choice: Same Old War, playing on the kitchen speaker
 1	Please	  UH	O	2	discourse
 2	confirm	  VB	O	0	root
 3	your	  PRP$	O 	5	nmod:poss
-4	song	  NN	O	6	compound
+4	song	  NN	O	5	compound
 5	choice	  NN	O 	2	obj
 6	Same	  JJ	MISC	8	amod
 7	Old	  NNP	MISC	8	compound
@@ -244,18 +244,18 @@ With `pipeline`
 >>> import deepnlp 
 >>> model= deepnlp.load_model('deepnlp_eng')
 >>> pipeline= deepnlp.pipeline(model, task= 'multi')
->>> output= pipeline("I have an apple.", device= 'cpu') # default device = 'cpu'
+>>> output= pipeline("Please confirm your song choice: Same Old War, playing on the kitchen speaker", device= 'cpu') # default device = 'cpu'
 >>> deepnlp.print_out([output])
 Please confirm your song choice: Same Old War, playing on the kitchen speaker
 1	Please	  UH	O	2	discourse
 2	confirm	  VB	O	0	root
 3	your	  PRP$	O 	5	nmod:poss
-4	song	  NN	O	6	compound
+4	song	  NN	O	5	compound
 5	choice	  NN	O 	2	obj
 6	Same	  JJ	MISC	8	amod
 7	Old	  NNP	MISC	8	compound
 8	War	  NNP	MISC	2	obj
-9	,	  ,	O	3	punct
+9	,	  ,	O	2	punct
 10	playing	  VBG	O	2	advcl
 11	on	  IN	O	14	case
 12	the	  DT	O	14	det

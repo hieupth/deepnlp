@@ -84,6 +84,7 @@ class MultiTask:
             y_pred= y_pred[-1]
 
             head= tf.boolean_mask(np.argmax(y_pred[0], axis= -1)[0], tf.not_equal(y_true, -1)).numpy()
+            head= [i -1 if i > 0 else i for i in head]
             relation= tf.boolean_mask(np.argmax(y_pred[1], axis= -1)[0], tf.not_equal(y_true, -1)).numpy()
 
             return list(
@@ -105,6 +106,7 @@ class MultiTask:
 
 
             head= tf.boolean_mask(np.argmax(y_pred[0], axis= -1)[0], tf.not_equal(y_true, -1)).numpy()
+            head= [i -1 if i > 0 else i for i in head]
             relation= tf.boolean_mask(np.argmax(y_pred[1], axis= -1)[0], tf.not_equal(y_true, -1)).numpy()        
 
             return list(
@@ -273,6 +275,7 @@ class pipeline:
             y_pred= y_pred[-1]
 
             head= tf.boolean_mask(np.argmax(y_pred[0], axis= -1)[0], tf.not_equal(y_true, -1)).numpy()
+            head= [i -1 if i > 0 else i for i in head]
             relation= tf.boolean_mask(np.argmax(y_pred[1], axis= -1)[0], tf.not_equal(y_true, -1)).numpy()
 
             return list(
@@ -294,6 +297,7 @@ class pipeline:
 
 
             head= tf.boolean_mask(np.argmax(y_pred[0], axis= -1)[0], tf.not_equal(y_true, -1)).numpy()
+            head= [i -1 if i > 0 else i for i in head]
             relation= tf.boolean_mask(np.argmax(y_pred[1], axis= -1)[0], tf.not_equal(y_true, -1)).numpy()        
 
             return list(

@@ -43,7 +43,7 @@ class MultiTask:
         data= (tf.convert_to_tensor(e['input_ids']), tf.convert_to_tensor(e['attention_mask']))
 
         with tf.device(device):
-            y_pred= self.__model.predict(data)
+            y_pred= self.__model.predict(data, verbose= False)
 
         return (y_pred, e_word_ids)
 
@@ -235,7 +235,7 @@ class pipeline:
         data= (tf.convert_to_tensor(e['input_ids']), tf.convert_to_tensor(e['attention_mask']))
 
         with tf.device(device):
-            y_pred= self.__model.predict(data)
+            y_pred= self.__model.predict(data, verbose= False)
 
         return (y_pred, e_word_ids)
     

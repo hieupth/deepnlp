@@ -43,7 +43,7 @@ def sentence_tokenize_eng(text):
 def word_tokenize(text: Type[str], language: Type[str]= 'eng') -> List[str]:
     if language == 'eng':
         return word_tokenize_eng(text)
-    else:
+    elif language == 'vie':
         return word_tokenize_vie(text)
 def sentence_tokenize(text: Type[str]) -> List[str]:
         return sentence_tokenize_eng(text)
@@ -51,5 +51,5 @@ def sentence_tokenize(text: Type[str]) -> List[str]:
 
 
 if __name__ == "__main__":
-    result= sentence_tokenize("Xin chào tôi tên là Nguyễn Tiến Đạt. Bạn tên là gì? Tôi muốn làm quen!!!")
+    result= word_tokenize('"Xin chào tôi tên là Nguyễn Tiến Đạt. Bạn tên là gì? Tôi muốn làm quen!!!"', language= 'vie')
     print(result)

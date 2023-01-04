@@ -51,5 +51,6 @@ def sentence_tokenize(text: Type[str]) -> List[str]:
 
 
 if __name__ == "__main__":
-    result= word_tokenize('"Xin chào tôi tên là Nguyễn Tiến Đạt. Bạn tên là gì? Tôi muốn làm quen!!!"', language= 'vie')
+    # result= word_tokenize('"Xin chào tôi tên là Nguyễn Tiến Đạt. Bạn tên là gì? Tôi muốn làm quen!!!"', language= 'vie')
+    result= word_tokenize('''"Hi, I'm Mr.Dat Tien Nguyen!!!"''', language= 'vie')
     print(result)

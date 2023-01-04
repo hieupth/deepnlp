@@ -34,6 +34,9 @@ class MultiTask:
         if model_name == 'deepnlp_eng':
             self.__tokenizer_name= 'distilroberta-base'
             self.__language= 'eng'
+        elif model_name == 'deepnlp_vie': 
+            self.__tokenizer_name= 'vinai/phobert-base'
+            self.__language= 'vie'
         self.__tokenizer= AutoTokenizer.from_pretrained(self.__tokenizer_name, add_prefix_space= True, use_fast= True)
     def __get_output(self, text: List[str], device:Optional[str]= None):
         e= self.__tokenizer.encode_plus(text, return_tensors= 'np',
@@ -224,7 +227,9 @@ class pipeline:
             self.__tokenizer_name= 'distilroberta-base'
             self.__language= 'eng'
             self.__vocab= load_vocabs('deepnlp_eng', task= 'multi')
-        
+        elif self.__model._name== 'deepnlp_vie': 
+            self.__tokenizer_name= 'vinai/phobert-base'
+            self.__language= 'vie'
         self.__tokenizer= AutoTokenizer.from_pretrained(self.__tokenizer_name, add_prefix_space= True, use_fast= True)
 
     def __preprocess(self, text: List[str], device:Optional[str]= None):

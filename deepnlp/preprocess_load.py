@@ -55,7 +55,7 @@ def download_model(model_name, required= True):
     
     if not ensure_dir(path_model) and required: 
         print('=' * 10 + ' Install Pretrained ' + '=' * 10)
-        gdown.download_folder(url_model, output= path_model)
+        gdown.download_folder(url_model, output= path_model, use_cookies= False)
 
 def download_vocabs(vocab_name):
     url_vocabs= ensure_vocabs_name(vocab_name)
@@ -63,7 +63,7 @@ def download_vocabs(vocab_name):
     
     if not ensure_dir(path_vocabs): 
         print('=' * 10 + ' Install Vocabs ' + '=' * 10)
-        gdown.download_folder(url_vocabs, output= path_vocabs)
+        gdown.download_folder(url_vocabs, output= path_vocabs, use_cookies= False)
 
 def download(model_name= 'deepnlp_eng', vocab_name= 'deepnlp_eng'):
     download_model(model_name)
